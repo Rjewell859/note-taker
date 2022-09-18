@@ -8,12 +8,13 @@ const { v4: uuidv4 } = require('uuid');
 
 // GET Route for retrieving all the tips
 notes.get('/', (req, res) => {
+  console.log(req)
   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 notes.get('/:note_id', (req, res) => {
   const noteId = req.params.note_id;
-  readFromFile('./db/tips.json')
+  readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
       const result = json.filter((note) => note.note_id === noteId);
